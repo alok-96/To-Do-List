@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/to-do-list/static/css/main.5590f6d3.css",
+    "main.js": "/to-do-list/static/js/main.adb9aa4e.js",
+    "static/js/787.34d05ddd.chunk.js": "/to-do-list/static/js/787.34d05ddd.chunk.js",
+    "static/media/trash-can-solid.svg": "/to-do-list/static/media/trash-can-solid.940f2754b6cc078901bdf1f87308209e.svg",
+    "index.html": "/to-do-list/index.html",
+    "main.5590f6d3.css.map": "/to-do-list/static/css/main.5590f6d3.css.map",
+    "main.adb9aa4e.js.map": "/to-do-list/static/js/main.adb9aa4e.js.map",
+    "787.34d05ddd.chunk.js.map": "/to-do-list/static/js/787.34d05ddd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5590f6d3.css",
+    "static/js/main.adb9aa4e.js"
+  ]
+}
