@@ -2,7 +2,7 @@
 A web application to keep track of the important tasks, built with React, HTML and CSS.
 
 ## Project Screen Shot(s)
-![image](https://github.com/alok-96/to-do-list/assets/90456532/19750c58-0a6f-402e-865c-ffbcbdfd9c14)
+![image](https://github.com/alok-96/to-do-list/assets/90456532/eb1e3ab0-6ff6-4848-bd0c-996f62065dc4)
 
 
 ## Installation and Setup Instructions
