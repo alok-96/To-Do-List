@@ -1,27 +1,32 @@
-## To-Do-List
-A web application to keep track of the important tasks, built with React, HTML and CSS.
+## About the Project 📂
+This To-Do App is a task managing web application to help user to stay organized for his on day to day basis. This To-Do App can be used for multiple purposes such as shopping lists, taking notes or planning an event etc. User can add any task in his to-do list and delete that task when it is completed.
 
-## Project Screen Shot(s)
-![image](https://github.com/alok-96/to-do-list/assets/90456532/eb1e3ab0-6ff6-4848-bd0c-996f62065dc4)
+👉 Live Demo:  <a href='https://to-do-app-alok96.netlify.app/'>To-Do List App</a>
 
+### Built With:
 
-## Installation and Setup Instructions
-
-Clone down this repository. You will need `node` and `npm` installed globally on your machine.
-
- `npm start`
- 
-Runs the app in the development mode.<br />
-Open `http://localhost:3000` to view it in the browser.
-
- `npm test`
- 
-Launches the test runner in the interactive watch mode.<br />
-
-`npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+» React.js <br />
+» CSS <br />
 
 
+## Screenshots of the Project 📸
+
+![image](https://github.com/alok-96/to-do-list/assets/90456532/086962cd-3b1c-49dd-af98-948121fffd50)
+
+
+## Installation and Setup Instructions 🛠️
+
+```
+1. Clone this repository
+   git clone https://github.com/alok-96/to-do-list.git
+
+2. Go into the repository
+   cd to-do-list
+
+3. Install dependencies
+   npm install
+
+4. Start a local dev server
+   npm start
+```
 <h3 align='center'>Made With ❤️ by <a href='https://github.com/alok-96' >alok-96</a></h3>
