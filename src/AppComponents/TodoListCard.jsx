@@ -1,27 +1,28 @@
 import React from "react";
 import { BiSolidTrash } from "react-icons/bi";
-import { FaRegEdit } from "react-icons/fa";
+// import { FaRegEdit } from "react-icons/fa";
 
 const TodoListCard = (props) => {
+
   return (
     <div className="todoCard" style={{ borderColor: `${props.color}` }}>
       <div className="taskInfo">
-        <div className="desc">{props.item}</div>
+        <div className="desc">{props.task}</div>
         <div className="actions">
-          <FaRegEdit
+          {/* <FaRegEdit
             size={"21px"}
             cursor={"pointer"}
             color={props.color}
             onClick={(e) => {
-              props.updateItem(props.index);
+              props.editTask(props.index);
             }}
-          />
+          /> */}
           <BiSolidTrash
             size={"21px"}
             cursor={"pointer"}
             color={props.color}
             onClick={(e) => {
-              props.deleteItem(props.index);
+              props.deleteTask(props.index);
             }}
           />
         </div>

@@ -63,6 +63,14 @@ input::placeholder{
   justify-content: center;
 }
 
+.noTask{
+  color: gray;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
 .todoCard{
   width: 250px;
   height: 200px;

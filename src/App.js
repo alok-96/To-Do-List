@@ -1,100 +1,109 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./AppComponents/Header";
-import TodoInput from "./AppComponents/TodoInput";
 import TodoListCard from "./AppComponents/TodoListCard";
 import toast, { Toaster } from "react-hot-toast";
 
 function App() {
-  const [List, setList] = useState([]);
+  const initialList = localStorage.getItem("taskList")
+    ? JSON.parse(localStorage.getItem("taskList"))
+    : [];
 
-  const addListItem = (inputText) => {
-    let tempList = List;
-    tempList.push(inputText);
-    localStorage.setItem("taskList", JSON.stringify(tempList));
-    setList(tempList);
-    toast.success("Task added successfully.", {
-      style: {
-        border: "1px solid #9ac5f4",
-        padding: "16px",
-        color: "#9ac5f4",
-      },
-      iconTheme: {
-        primary: "#9ac5f4",
-      },
-    });
+  const [List, setList] = useState(initialList);
+  const [inputText, setInputText] = useState("");
+
+  const addTask = (e) => {
+    e.preventDefault();
+
+    if (inputText === "") alert("Please enter the task description.");
+    else {
+      const text = inputText.charAt(0).toUpperCase() + inputText.slice(1);
+      setList([...List, text]);
+      toast.success("Task added successfully.", {
+        style: {
+          border: "1px solid #9ac5f4",
+          color: "#6ad478",
+        },
+        iconTheme: {
+          primary: "#6ad478",
+        },
+      });
+      setInputText("");
+    }
   };
 
-  const deleteListItem = (index) => {
-    let tempList = List;
-    tempList.splice(index, 1);
-    localStorage.setItem("taskList", JSON.stringify(tempList));
-    setList(tempList);
+  const EnterPressEvent = (e) => {
+    if (e.key === "Enter") addTask(e);
+  };
+
+  const deleteTask = (index) => {
+    let newList = [...List];
+    newList.splice(index, 1);
+    setList([...newList]);
+
     toast.success("Task deleted successfully.", {
       style: {
         border: "1px solid #9ac5f4",
-        padding: "16px",
-        color: "#9ac5f4",
+        color: "#f04141",
       },
       iconTheme: {
-        primary: "#9ac5f4",
+        primary: "#f04141",
       },
     });
-  };
-
-  const UpdateListItem = (index) => {
-    var x = List[index];
-    setList({ newtask: x });
-    // localStorage.setItem("taskList", JSON.stringify(tempList));
-    // setList(tempList);
-    toast.success("Task updated successfully.", {
-      style: {
-        border: "1px solid #9ac5f4",
-        padding: "16px",
-        color: "#9ac5f4",
-      },
-      iconTheme: {
-        primary: "#9ac5f4",
-      },
-    });
+    setInputText("");
   };
 
   const color = [
     "#9AC5F4",
-    "#18b82d",
+    "#6ad478",
     "#ede31f",
-    "#7470b5",
-    "#f777e8",
+    "#a5a3d6",
+    "#e8a5e0",
     "#f04141",
     "#9e989d",
   ];
-  const renderListItem = List.map((listItem, index) => {
-    return (
-      <TodoListCard
-        key={index}
-        item={listItem}
-        deleteItem={deleteListItem}
-        updateItem={UpdateListItem}
-        index={index}
-        color = {color[index % 7]}
-      />
-    );
-  });
 
   useEffect(() => {
-    let taskList = localStorage.getItem("taskList");
-    if (taskList) {
-      let arr = JSON.parse(taskList);
-      setList(arr);
-    }
+    localStorage.setItem("taskList", JSON.stringify(List));
   }, [List]);
 
   return (
     <div className="container">
       <Header />
-      <TodoInput addListItem={addListItem}  />
-      <div className="flex">{List && renderListItem}</div>
-      <Toaster position="top-center" />
+      <div className="main-content">
+        <form onSubmit={addTask}>
+          <div className="input-area">
+            <input
+              type="text"
+              value={inputText}
+              placeholder="Enter your task here"
+              onChange={(e) => {
+                setInputText(e.target.value);
+              }}
+              onKeyDown={EnterPressEvent}
+            />
+
+            <button type="submit" className="btn">
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="flex">
+        {List.length === 0 && (
+          <div className="noTask">🤩Wohoo, No pending task</div>
+        )}
+        {List &&
+          List.map((task, index) => (
+            <TodoListCard
+              task={task}
+              key={index}
+              deleteTask={deleteTask}
+              color={color[index % 7]}
+            />
+          ))}
+      </div>
+      <Toaster />
     </div>
   );
 }
