@@ -15,13 +15,19 @@ function App() {
   const addTask = (e) => {
     e.preventDefault();
 
-    if (inputText === "") alert("Please enter the task description.");
+    if (inputText === "") {
+      toast("Please enter task description.", {
+        icon: "⚠️",
+        style: {
+          color: "#cf9a29",
+        },
+      });
+    }
     else {
       const text = inputText.charAt(0).toUpperCase() + inputText.slice(1);
       setList([...List, text]);
       toast.success("Task added successfully.", {
         style: {
-          border: "1px solid #9ac5f4",
           color: "#6ad478",
         },
         iconTheme: {
@@ -43,7 +49,6 @@ function App() {
 
     toast.success("Task deleted successfully.", {
       style: {
-        border: "1px solid #9ac5f4",
         color: "#f04141",
       },
       iconTheme: {
@@ -97,7 +102,7 @@ function App() {
           List.map((task, index) => (
             <TodoListCard
               task={task}
-              key={index}
+              index={index}
               deleteTask={deleteTask}
               color={color[index % 7]}
             />
