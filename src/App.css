@@ -13,7 +13,7 @@ body{
 
 .header{
   text-align: center;
-  background-color: #9AC5F4;
+  background-color: #9ac5f4;
   color: white;
   padding-block: 50px;
   letter-spacing: 2px;
@@ -35,19 +35,25 @@ body{
   width: 100%;
   outline: none;
   border-radius: 3px;
-  border: 2px solid #9AC5F4;
-  padding: 10px 20px;
-  font-size: 1.2rem;
+  border: 2px solid #9ac5f4;
+  padding: 10px 10px;
+  font-size: 1rem;
   background-color: inherit;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+input:focus{
+  outline: none;
+  border: #6fa4de solid 2px;
 }
 
 input::placeholder{
-  color: #c5defa;
+  color: #b5d3f5;
 }
 
 .btn{
   color: #ffffff;
-  background-color: #9AC5F4;
+  background-color: #9ac5f4;
   border: none;
   font-size: 1.2rem;
   padding-inline: 15px;
@@ -56,6 +62,25 @@ input::placeholder{
   outline: none;
 }
 
+.btn:focus{
+  outline: #1e7de6 solid 1.5px;
+}
+
+/* validation of input field */
+.validation{
+  display: flex;
+}
+
+#error{
+  color: red;
+  font-size: 12px;
+}
+
+#charcter-count{
+  color: #585757;
+  font-size: 12px;
+
+}
 
 .flex {
   display: flex;
@@ -71,6 +96,8 @@ input::placeholder{
   font-size: 1.5rem;
 }
 
+
+/* To-do card */
 .todoCard{
   width: 250px;
   height: 200px;
@@ -79,6 +106,12 @@ input::placeholder{
   margin: 25px 20px;
   overflow: hidden;
   box-shadow: 5px 5px 10px rgb(196, 196, 196);
+  /* overflow : hidden; */
+  transition: all 0.5s ease 0s;
+}
+
+.todoCard:hover{
+  transform: scale(1.02);
 }
 
 .taskInfo{
@@ -97,8 +130,8 @@ input::placeholder{
 .actions{
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
-    background-color: #ffffff;
+  gap: 10px;
+  background-color: #ffffff;
 }
 
 .icon {

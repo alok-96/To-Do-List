@@ -9,11 +9,15 @@ function App() {
     ? JSON.parse(localStorage.getItem("taskList"))
     : [];
 
-  const [List, setList] = useState(initialList);
+  const [list, setList] = useState(initialList);
   const [inputText, setInputText] = useState("");
+  const [error, setError] = useState(false);
+  const [characterCount, setCharacterCount] = useState(0);
+  const [taskIndex, setTaskIndex] = useState(-1);
 
   const addTask = (e) => {
     e.preventDefault();
+    setError(false);
 
     if (inputText === "") {
       toast("Please enter task description.", {
@@ -22,11 +26,24 @@ function App() {
           color: "#cf9a29",
         },
       });
-    }
-    else {
+    } else {
       const text = inputText.charAt(0).toUpperCase() + inputText.slice(1);
-      setList([...List, text]);
-      toast.success("Task added successfully.", {
+      if(taskIndex >= 0)
+      {
+        list[taskIndex] = text; 
+        toast.success('Task updated successfully.', {
+          style: {
+            color: "#6ad478",
+          },
+          iconTheme: {
+            primary: "#6ad478",
+          },
+        });
+        setTaskIndex(-1);
+      }
+      else{
+        setList([...list, text]);
+        toast.success('Task added successfully.', {
         style: {
           color: "#6ad478",
         },
@@ -34,6 +51,7 @@ function App() {
           primary: "#6ad478",
         },
       });
+      }
       setInputText("");
     }
   };
@@ -43,34 +61,39 @@ function App() {
   };
 
   const deleteTask = (index) => {
-    let newList = [...List];
+    let newList = [...list];
     newList.splice(index, 1);
     setList([...newList]);
 
     toast.success("Task deleted successfully.", {
       style: {
-        color: "#f04141",
+        color: "#6ad478",
       },
       iconTheme: {
-        primary: "#f04141",
+        primary: "#6ad478",
       },
     });
     setInputText("");
   };
 
+  const updateTask = (index) => {
+    setTaskIndex(index);
+    setInputText(list[index]);
+  }
+
   const color = [
-    "#9AC5F4",
+    "#9ac5f4",
     "#6ad478",
     "#ede31f",
     "#a5a3d6",
     "#e8a5e0",
-    "#f04141",
+    "#f76565",
     "#9e989d",
   ];
 
   useEffect(() => {
-    localStorage.setItem("taskList", JSON.stringify(List));
-  }, [List]);
+    localStorage.setItem("taskList", JSON.stringify(list));
+  }, [list]);
 
   return (
     <div className="container">
@@ -83,26 +106,40 @@ function App() {
               value={inputText}
               placeholder="Enter your task here"
               onChange={(e) => {
-                setInputText(e.target.value);
+                setCharacterCount(e.target.value.length);
+                if (e.target.value.length > 160) {
+                  setError(true);
+                } else {
+                  setError(false);
+                  setInputText(e.target.value);
+                }
               }}
               onKeyDown={EnterPressEvent}
             />
 
             <button type="submit" className="btn">
-              Add
+              {taskIndex >= 0 ? "Update" : "Add"}
             </button>
+          </div>
+          <div className="validation">
+            <div id="error">
+              {error ? "Task description can't exceed 160 characters." : null}
+            </div>
+            <div id="charcter-count"> {inputText && `(${characterCount}/160)`}</div>
           </div>
         </form>
       </div>
       <div className="flex">
-        {List.length === 0 && (
+        {list.length === 0 && (
           <div className="noTask">🤩Wohoo, No pending task</div>
         )}
-        {List &&
-          List.map((task, index) => (
+        {list &&
+          list.map((task, index) => (
             <TodoListCard
               task={task}
+              key={index}
               index={index}
+              updateTask={updateTask}
               deleteTask={deleteTask}
               color={color[index % 7]}
             />
