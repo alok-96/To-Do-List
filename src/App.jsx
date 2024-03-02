@@ -79,6 +79,7 @@ function App() {
   const updateTask = (index) => {
     setTaskIndex(index);
     setInputText(list[index]);
+    setCharacterCount(list[index].length);
   }
 
   const color = [
